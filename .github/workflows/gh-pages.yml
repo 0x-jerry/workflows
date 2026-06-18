@@ -1,4 +1,4 @@
-name: Publish
+name: GH Pages
 
 on:
   workflow_call:
