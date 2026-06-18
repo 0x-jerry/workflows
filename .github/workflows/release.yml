@@ -1,25 +1,13 @@
 name: Release
 
 on:
-  workflow_call:
-    inputs: {}
+  push:
+    tags:
+      - "*"
 
 jobs:
   release:
-    runs-on: ubuntu-latest
+    uses: 0x-jerry/workflows/.github/workflows/changelog.yml@main
     permissions:
       contents: write
       id-token: write
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v6
-        with:
-          fetch-depth: 0
-
-      - name: Install bun
-        uses: oven-sh/setup-bun@v2
-
-      - name: Release
-        run: bunx changelogithub
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
