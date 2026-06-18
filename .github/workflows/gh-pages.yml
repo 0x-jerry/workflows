@@ -1,0 +1,38 @@
+name: Publish
+
+on:
+  workflow_call:
+    inputs: 
+      build-cmd:
+        required: false
+        description: Build command, default is `bun run build`
+        type: string
+        default: bun run build
+      upload-folder:
+        required: false
+        description: The folder uploaded to gh-pages branch, default is `./dist`
+        type: string
+        default: ./dist
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: read
+    steps:
+      - name: Setup bun
+        uses: 0x-jerry/workflows/actions/setup-js@main
+
+      - name: Install dependencies
+        run: bun install
+
+      - name: Build
+        run: ${{ inputs.build-cmd }}
+
+      - name: deploy
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ${{ inputs.upload-folder }}
+          force_orphan: true
