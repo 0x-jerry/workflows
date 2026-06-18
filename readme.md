@@ -1,7 +1,3 @@
-# TS SDK Template
+# Actions
 
-## TODO
-
-- [ ] run `npm init --yes`
-- [ ] change package metadata
-- [ ] rewrite this docs.
+Common used workflows.
