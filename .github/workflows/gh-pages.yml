@@ -15,7 +15,7 @@ on:
         default: ./dist
 
 jobs:
-  publish:
+  deploy:
     runs-on: ubuntu-latest
     permissions:
       contents: write

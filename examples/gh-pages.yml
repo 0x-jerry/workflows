@@ -6,7 +6,7 @@ on:
       - "*"
 
 jobs:
-  release:
+  deploy:
     uses: 0x-jerry/workflows/.github/workflows/changelog.yml@main
     permissions:
       contents: write
