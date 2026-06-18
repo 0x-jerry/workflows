@@ -5,10 +5,8 @@ on:
     tags:
       - "*"
   workflow_call:
-    inputs:
-    secrets:
-
-
+    inputs: {}
+    secrets: {}
 
 jobs:
   release:
