@@ -7,7 +7,7 @@ on:
 
 jobs:
   deploy:
-    uses: 0x-jerry/workflows/.github/workflows/changelog.yml@main
+    uses: 0x-jerry/workflows/.github/workflows/gh-pages.yml@main
     permissions:
       contents: write
     with:
