@@ -9,8 +9,7 @@ jobs:
   release:
     uses: 0x-jerry/workflows/.github/workflows/changelog.yml@main
     permissions:
-      id-token: write
-      contents: read
+      contents: write
     with:
       build-cmd: bun run build
       uplaod-folder: ./dist

@@ -18,8 +18,7 @@ jobs:
   publish:
     runs-on: ubuntu-latest
     permissions:
-      id-token: write
-      contents: read
+      contents: write
     steps:
       - name: Setup bun
         uses: 0x-jerry/workflows/actions/setup-js@main
