@@ -2,8 +2,7 @@ name: Publish
 
 on:
   workflow_call:
-    inputs:
-    secrets:
+    inputs: {}
 
 jobs:
   release:
