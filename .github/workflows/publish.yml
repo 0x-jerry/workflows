@@ -8,11 +8,10 @@ jobs:
   release:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v6
-
-      - name: Install bun
-        uses: oven-sh/setup-bun@v2
+      - name: Setup bun
+        uses: 0x-jerry/workflows/actions/setup-js@main
+        with:
+          fetch-all: true
 
       - name: Install dependencies
         run: bun install
