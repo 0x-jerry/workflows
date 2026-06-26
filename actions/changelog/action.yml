@@ -13,6 +13,7 @@ runs:
   using: composite
   steps:
     - name: Release
+      shell: bash
       run: bunx changelogithub --output _RELEASE_NOTE_.md
 
     - uses: actions/github-script@v7
