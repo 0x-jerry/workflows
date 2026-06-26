@@ -1,6 +1,11 @@
 name: Create Release
 description: Create a release by chnagelogithub
 
+inputs:
+  files:
+    description: Newline-delimited globs of paths to assets to upload for release.
+    required: false
+
 outputs:
   release-id:
     description: Released ID
@@ -28,4 +33,5 @@ runs:
       uses: softprops/action-gh-release@v3
       with:
         body_path: _RELEASE_NOTE_.md
+        files: ${{ inputs.files }}
         prerelease: ${{steps.is-prerelease.outputs.result}}
