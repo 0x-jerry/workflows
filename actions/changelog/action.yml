@@ -1,0 +1,30 @@
+name: Create Release
+description: Create a release by chnagelogithub
+
+outputs:
+  release-id:
+    description: Released ID
+    value: ${{ steps.create-release.outputs.id }}
+
+# permissions:
+#   contents: write
+
+runs:
+  using: composite
+  steps:
+    - name: Release
+      run: bunx changelogithub --output _RELEASE_NOTE_.md
+
+    - uses: actions/github-script@v7
+      id: is-prerelease
+      with:
+        script: |
+          const name = context.ref.slice("refs/tags/".length);
+          return name.includes("-");
+
+    - name: Release
+      id: create-release
+      uses: softprops/action-gh-release@v3
+      with:
+        body_path: _RELEASE_NOTE_.md
+        prerelease: ${{steps.is-prerelease.outputs.result}}

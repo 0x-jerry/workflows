@@ -3,13 +3,18 @@ name: Changelog
 on:
   workflow_call:
     inputs: {}
+    outputs:
+      release-id:
+        description: Released ID
+        value: ${{ jobs.release.outputs.release-id }}
 
 jobs:
   release:
     runs-on: ubuntu-latest
     permissions:
       contents: write
-      id-token: write
+    outputs:
+      release-id: ${{ steps.create-release.outputs.release-id }}
     steps:
       - name: Setup bun
         uses: 0x-jerry/workflows/actions/setup-js@main
@@ -17,6 +22,5 @@ jobs:
           fetch-all: true
 
       - name: Release
-        run: bunx changelogithub
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        id: create-release
+        uses: 0x-jerry/workflows/actions/changelog@main
