@@ -7,7 +7,25 @@ on:
 
 jobs:
   release:
-    uses: 0x-jerry/workflows/.github/workflows/changelog.yml@main
+    runs-on: ubuntu-latest
     permissions:
       contents: write
-      id-token: write
+    steps:
+      - name: Setup bun
+        uses: 0x-jerry/workflows/actions/setup-js@main
+        with:
+          fetch-all: true
+      - name: Install dependencies
+        run: bun i
+
+      - name: Generate Artifacts
+        run: bun run build
+
+      - name: Release
+        id: create-release
+        uses: 0x-jerry/workflows/actions/changelog@main
+        with:
+          # Newline-delimited globs of paths to assets to upload for release.
+          files: |
+            release-files.exe
+
